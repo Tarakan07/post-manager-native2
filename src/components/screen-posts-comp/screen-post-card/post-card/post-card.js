@@ -7,8 +7,14 @@ import {
 	Dimensions,
 	StyleSheet,
 } from "react-native";
+import { useAuth } from "../../../../context/auth-context/useAuth";
+import { useNavigation } from "../../../../context/navigation-context/useNavigation";
+import { usePosts } from "../../../../context/post-context/usePosts";
 import THEME from "../../../../THEME";
 const PostCard = ({ post }) => {
+	const { activeUser } = useAuth();
+	const { deletePost, error } = usePosts();
+	const navigation = useNavigation();
 	return (
 		<View style={styles.container}>
 			<Image
@@ -23,6 +29,30 @@ const PostCard = ({ post }) => {
 				<Text style={styles.date}>{post.date}</Text>
 			</View>
 			<Text style={styles.content}>{post.content}</Text>
+			{post.author && (
+				<>
+					{error && <Text>{error}</Text>}
+					{activeUser.email === post?.author && (
+						<View style={styles.wrapSettingPress}>
+							<Pressable
+								style={styles.pressSettings}
+								onPress={() => navigation.navigate("CreatePost", { post })}
+							>
+								<Text>Update post</Text>
+							</Pressable>
+							<Pressable
+								style={styles.pressSettings}
+								onPress={() => {
+									deletePost(post.id);
+									navigation.navigate("Posts");
+								}}
+							>
+								<Text>Delete post</Text>
+							</Pressable>
+						</View>
+					)}
+				</>
+			)}
 		</View>
 	);
 };
@@ -57,6 +87,18 @@ const styles = StyleSheet.create({
 	content: {
 		fontSize: 14,
 		color: THEME.colors.defaultText,
+	},
+	wrapSettingPress: {
+		flexDirection: "row",
+		justifyContent: "space-around",
+		marginTop: 20,
+	},
+	pressSettings: {
+		borderWidth: 1,
+		borderColor: "#000",
+		borderRadius: 25,
+		paddingHorizontal: 10,
+		paddingVertical: 5,
 	},
 });
 export default PostCard;

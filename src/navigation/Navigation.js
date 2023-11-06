@@ -11,6 +11,7 @@ import AccountScreen from "../screens/AccountScreen";
 import LoginScreen from "../screens/AccountScreen/AuthorizationScreen/LoginScreen";
 import RegistrationScreen from "../screens/AccountScreen/AuthorizationScreen/RegistrationScreen";
 import ProfileScreen from "../screens/AccountScreen/ProfileScreen";
+import CreatePostScreen from "../screens/PostsScreen/CreatePostScreen";
 //End Screens//
 const BottomTab = createBottomTabNavigator();
 const NativeNavigator = createNativeStackNavigator();
@@ -45,6 +46,7 @@ const NavigatorPosts = () => {
 		>
 			<NativeNavigator.Screen name="Posts" component={PostsScreen} />
 			<NativeNavigator.Screen name="PostItem" component={PostCardScreen} />
+			<NativeNavigator.Screen name="CreatePost" component={CreatePostScreen} />
 		</NativeNavigator.Navigator>
 	);
 };

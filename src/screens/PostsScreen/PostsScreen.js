@@ -7,7 +7,7 @@ const PostsScreen = ({ navigation }) => (
 	<ScrollView>
 		<NavigationContext.Provider value={navigation}>
 			<Header title={"Posts"} />
-			<PostsList navigation={navigation} />
+			<PostsList />
 		</NavigationContext.Provider>
 	</ScrollView>
 );

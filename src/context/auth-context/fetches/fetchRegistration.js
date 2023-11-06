@@ -2,10 +2,9 @@ import { getSaveUsers } from "./getSaveUsers";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const createArrayUsers = async ({ user, saveUsers }) => {
-	const arrayUsers = [
-		...saveUsers.arrayUsers,
-		{ ...user, email: user.email.toLowerCase() },
-	];
+	const arrayUsers = saveUsers
+		? [...saveUsers.arrayUsers, { ...user, email: user.email.toLowerCase() }]
+		: [{ ...user, email: user.email.toLowerCase() }];
 
 	await AsyncStorage.setItem("users", JSON.stringify({ arrayUsers }));
 	await AsyncStorage.setItem("active_user", JSON.stringify(user));

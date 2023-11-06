@@ -86,13 +86,16 @@ const Profile = () => {
 					</View>
 				</View>
 				{edit && (
-					<Pressable
-						onPress={() => {
-							sentForm(dataForm.data);
-						}}
-					>
-						<Text>Save</Text>
-					</Pressable>
+					<View style={{ flexDirection: "row" }}>
+						<Pressable
+							style={styles.pressSave}
+							onPress={() => {
+								sentForm(dataForm.data);
+							}}
+						>
+							<Text>Save</Text>
+						</Pressable>
+					</View>
 				)}
 
 				<View style={{ flexDirection: "row" }}>
@@ -127,6 +130,14 @@ const styles = StyleSheet.create({
 		borderRadius: 20,
 
 		borderWidth: 1,
+	},
+	pressSave: {
+		paddingHorizontal: 10,
+		paddingVertical: 5,
+		borderColor: "#000",
+		borderRadius: 20,
+		borderWidth: 1,
+		marginTop: 15,
 	},
 	pressLogoutText: {
 		color: "red",

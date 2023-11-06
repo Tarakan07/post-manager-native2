@@ -8,7 +8,9 @@ import {
 	Image,
 } from "react-native";
 import { useNavigation } from "../../../../context/navigation-context/useNavigation";
+import { VisibleImage } from "../../../../UTILS";
 import THEME from "../../../../THEME";
+
 const PostItem = ({ post }) => {
 	const navigation = useNavigation();
 
@@ -21,16 +23,11 @@ const PostItem = ({ post }) => {
 					})
 				}
 			>
-				<Image
-					style={styles.boxImage}
-					source={{
-						uri: post.image,
-					}}
-				/>
+				<VisibleImage style={styles.boxImage} source={post.image} />
 			</Pressable>
 			<View style={styles.boxInfo}>
 				<Text style={styles.title}>
-					{post.title} {post.author && `(${post.author})`}
+					{post.title} {post.author && `(Author: ${post.author})`}
 				</Text>
 				<Text style={styles.date}>{post.date}</Text>
 			</View>

@@ -1,59 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import THEME from "../../../../THEME";
 import PostItem from "../post-item";
-
+import { useNavigation } from "../../../../context/navigation-context/useNavigation";
+import { usePosts } from "../../../../context/post-context/usePosts";
+import { useAuth } from "../../../../context/auth-context/useAuth";
+import PostsListHeader from "../posts-list-header";
 const PostsList = () => {
-	const data = [
-		{
-			id: 1,
-			image:
-				"https://user-images.githubusercontent.com/16062886/117443651-c13d9500-af38-11eb-888d-b6a0b580760c.png",
-			title: "Ляляляя",
-			content:
-				"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit, beatae. Soluta quo ducimus praesentium obcaecati et beatae, vitae quod odio.",
-			date: "02.03.2023",
-			author: "lala@mail.ru",
-		},
-		{
-			id: 2,
-			image:
-				"https://user-images.githubusercontent.com/16062886/117443651-c13d9500-af38-11eb-888d-b6a0b580760c.png",
-			title: "Ляляляя",
-			content:
-				"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit, beatae. Soluta quo ducimus praesentium obcaecati et beatae, vitae quod odio.",
-			date: "02.03.2023",
-			author: "",
-		},
-		{
-			id: 3,
-			image:
-				"https://user-images.githubusercontent.com/16062886/117443651-c13d9500-af38-11eb-888d-b6a0b580760c.png",
-			title: "Ляляляя",
-			content:
-				"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit, beatae. Soluta quo ducimus praesentium obcaecati et beatae, vitae quod odio.",
-			date: "02.03.2023",
-			author: "lala@mail.ru",
-		},
-		{
-			id: 4,
-			image:
-				"https://user-images.githubusercontent.com/16062886/117443651-c13d9500-af38-11eb-888d-b6a0b580760c.png",
-			title: "Ляляляя",
-			content:
-				"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit, beatae. Soluta quo ducimus praesentium obcaecati et beatae, vitae quod odio.",
-			date: "02.03.2023",
-			author: "",
-		},
-	];
+	const { posts, userPosts, error } = usePosts();
+
+	if (error) {
+		return <Text>{error}</Text>;
+	}
+	if (!posts || posts.length === 0) {
+		return (
+			<View style={{ marginTop: 20 }}>
+				<Text style={{ textAlign: "center" }}>No posts{`(`}</Text>
+				<PostsListHeader />
+			</View>
+		);
+	}
+	const visiblePosts = userPosts ? userPosts : posts;
+
 	return (
 		<View style={styles.container}>
-			<View>
-				<Pressable>
-					<Text>Show you're posts</Text>
-				</Pressable>
-			</View>
-			{data.map((post) => {
+			<PostsListHeader />
+			{visiblePosts.map((post) => {
 				return (
 					<View key={post.id}>
 						<PostItem post={post} />
@@ -68,6 +40,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		marginTop: 20,
 		paddingHorizontal: THEME.paddingHorizontal,
+		marginBottom: 50,
 	},
 });
 export default PostsList;
