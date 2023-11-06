@@ -1,3 +1,3 @@
 # post-manager_react-native
-Refistration/auth with asyncstorage
+Registration/auth with asyncstorage
 CRUD posts with asyncstorage
