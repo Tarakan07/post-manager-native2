@@ -50,17 +50,6 @@ const Registration = ({ navigation }) => {
 			changeState();
 			return;
 		}
-		// if (usersList) {
-		// 	const haveUser = usersList.find((el) => el.email == data.email);
-		// 	if (haveUser) {
-		// 		setMessage("Такой пользователь существует.");
-		// 		setTimeout(() => {
-		// 			setMessage(null);
-		// 		}, 2000);
-		// 		return;
-		// 	}
-		// }
-		// else all ok, change state
 
 		changeState();
 		registration(dataForm.data);

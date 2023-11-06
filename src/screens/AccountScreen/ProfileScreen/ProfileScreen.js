@@ -8,7 +8,7 @@ const ProfileScreen = ({ navigation }) => {
 
 	return (
 		<ScrollView style={styles.container}>
-			<Header title={activeUser.name} />
+			<Header title={activeUser.name} navigation={navigation} />
 			<Profile navigation={navigation} />
 		</ScrollView>
 	);

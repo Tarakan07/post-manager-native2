@@ -6,7 +6,7 @@ import { NavigationContext } from "../../context/navigation-context/navigation-c
 const PostsScreen = ({ navigation }) => (
 	<ScrollView>
 		<NavigationContext.Provider value={navigation}>
-			<Header title={"Posts"} />
+			<Header title={"Posts"} navigation={navigation} back={false} />
 			<PostsList />
 		</NavigationContext.Provider>
 	</ScrollView>

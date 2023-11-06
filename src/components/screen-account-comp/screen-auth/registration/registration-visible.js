@@ -53,12 +53,14 @@ const RegistrationVisible = ({
 							error={dataForm.error}
 						/>
 					</View>
-					<Pressable
-						style={styles.btnForm}
-						onPress={() => sentForm(dataForm.data)}
-					>
-						<Text>Register</Text>
-					</Pressable>
+					<View style={{ flexDirection: "row" }}>
+						<Pressable
+							style={styles.btnForm}
+							onPress={() => sentForm(dataForm.data)}
+						>
+							<Text>Register</Text>
+						</Pressable>
+					</View>
 				</View>
 			</View>
 		</View>
@@ -98,6 +100,11 @@ const styles = StyleSheet.create({
 	},
 	btnForm: {
 		marginTop: 20,
+		paddingHorizontal: 10,
+		paddingVertical: 5,
+		borderWidth: 1,
+		borderColor: "#000",
+		borderRadius: 25,
 	},
 });
 export default RegistrationVisible;

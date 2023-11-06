@@ -9,7 +9,7 @@ const PostCardScreen = ({ route, navigation }) => {
 	return (
 		<ScrollView>
 			<NavigationContext.Provider value={navigation}>
-				<Header title={post.title} />
+				<Header title={post.title} navigation={navigation} />
 				<PostCard post={post} />
 			</NavigationContext.Provider>
 		</ScrollView>

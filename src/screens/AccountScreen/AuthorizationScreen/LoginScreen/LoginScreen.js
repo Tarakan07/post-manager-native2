@@ -5,7 +5,7 @@ import Login from "../../../../components/screen-account-comp/screen-auth/login"
 const LoginScreen = ({ navigation }) => {
 	return (
 		<View style={styles.container}>
-			<Header title={"Login"} />
+			<Header title={"Login"} navigation={navigation} />
 			<Login navigation={navigation} />
 		</View>
 	);

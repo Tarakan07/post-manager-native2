@@ -5,7 +5,7 @@ import THEME from "../../../THEME";
 const AuthorizationScreen = ({ navigation }) => {
 	return (
 		<View style={styles.container}>
-			<Header title={"Authorization"} />
+			<Header title={"Authorization"} navigation={navigation} back={false} />
 			<View style={styles.wrap}>
 				<Pressable
 					style={styles.press}
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 	container: { flex: 1, alignItems: "center" },
 	wrap: {
 		marginTop: "20%",
-		width: "30%",
+		width: "45%",
 	},
 	press: {
 		marginTop: 20,

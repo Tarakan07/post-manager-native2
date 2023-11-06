@@ -8,7 +8,7 @@ const CreatePostScreen = ({ navigation, route }) => {
 	return (
 		<ScrollView style={styles.container}>
 			<NavigationContext.Provider value={navigation}>
-				<Header title={"Create post"} />
+				<Header title={"Create post"} navigation={navigation} />
 				<CreatePost updatePost={updatePost} />
 			</NavigationContext.Provider>
 		</ScrollView>

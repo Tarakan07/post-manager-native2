@@ -5,7 +5,7 @@ import Registration from "../../../../components/screen-account-comp/screen-auth
 const RegistrationScreen = ({ navigation }) => {
 	return (
 		<View style={styles.container}>
-			<Header title={"Registration"} />
+			<Header title={"Registration"} navigation={navigation} />
 			<Registration navigation={navigation} />
 		</View>
 	);
