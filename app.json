@@ -1,28 +1,42 @@
 {
-	"expo": {
-		"name": "post-manager",
-		"slug": "post-manager",
-		"version": "1.0.0",
-		"orientation": "portrait",
-		"icon": "./assets/myIcon.png",
-		"userInterfaceStyle": "light",
-		"splash": {
-			"image": "./assets/splash.png",
-			"resizeMode": "contain",
-			"backgroundColor": "#ffffff"
-		},
-		"assetBundlePatterns": ["**/*"],
-		"ios": {
-			"supportsTablet": true
-		},
-		"android": {
-			"adaptiveIcon": {
-				"foregroundImage": "./assets/myIcon.png",
-				"backgroundColor": "#ffffff"
-			}
-		},
-		"web": {
-			"favicon": "./assets/myIcon.png"
-		}
-	}
+  "expo": {
+    "name": "post-manager",
+    "slug": "post-manager",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/myIcon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/myIcon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.tarakan07.postmanager"
+    },
+    "web": {
+      "favicon": "./assets/myIcon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ff1671f4-5f70-42f2-a414-326e06801220"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/ff1671f4-5f70-42f2-a414-326e06801220"
+    }
+  }
 }
