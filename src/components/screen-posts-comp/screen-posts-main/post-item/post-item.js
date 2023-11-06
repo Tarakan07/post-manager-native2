@@ -7,7 +7,7 @@ import {
 	Dimensions,
 	Image,
 } from "react-native";
-import { useNavigation } from "../../../../context/useNavigation";
+import { useNavigation } from "../../../../context/navigation-context/useNavigation";
 import THEME from "../../../../THEME";
 const PostItem = ({ post }) => {
 	const navigation = useNavigation();

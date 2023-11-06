@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { validation } from "../../../../UTILS";
 import RegistrationVisible from "./registration-visible";
-import { useAuth } from "../../../../context/useAuth";
+import { useAuth } from "../../../../context/auth-context/useAuth";
 
 const Registration = ({ navigation }) => {
 	const [dataForm, setDataForm] = useState({

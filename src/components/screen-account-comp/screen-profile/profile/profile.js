@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
-import { useAuth } from "../../../../context/useAuth";
+import { useAuth } from "../../../../context/auth-context/useAuth";
 import THEME from "../../../../THEME";
 import { CreateInput } from "../../../../UTILS";
 import { validation } from "../../../../UTILS";

@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import AuthorizationScreen from "./AuthorizationScreen";
 import ProfileScreen from "./ProfileScreen";
-import { useAuth } from "../../context/useAuth";
+import { useAuth } from "../../context/auth-context/useAuth";
 const AccountScreen = ({ navigation }) => {
 	const { activeUser } = useAuth();
 	const visible = activeUser ? (

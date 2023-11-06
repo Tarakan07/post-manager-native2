@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { validation } from "../../../../UTILS";
 
 import LoginVisible from "./login-visible";
-import { useAuth } from "../../../../context/useAuth";
+import { useAuth } from "../../../../context/auth-context/useAuth";
 const Login = ({ navigation }) => {
 	const { authorization, error, activeUser } = useAuth();
 
