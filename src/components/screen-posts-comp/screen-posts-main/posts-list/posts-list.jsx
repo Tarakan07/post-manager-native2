@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 import THEME from "../../../../THEME";
 import PostItem from "../post-item";
-import { useNavigation } from "../../../../context/navigation-context/useNavigation";
 import { usePosts } from "../../../../context/post-context/usePosts";
-import { useAuth } from "../../../../context/auth-context/useAuth";
 import PostsListHeader from "../posts-list-header";
 const PostsList = () => {
 	const { posts, userPosts, error } = usePosts();

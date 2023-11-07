@@ -1,12 +1,5 @@
 import React from "react";
-import {
-	Text,
-	View,
-	StyleSheet,
-	Pressable,
-	Dimensions,
-	Image,
-} from "react-native";
+import { Text, View, StyleSheet, Pressable, Dimensions } from "react-native";
 import { useNavigation } from "../../../../context/navigation-context/useNavigation";
 import { VisibleImage } from "../../../../UTILS";
 import THEME from "../../../../THEME";

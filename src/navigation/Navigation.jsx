@@ -1,9 +1,12 @@
 import * as React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import {
+	createBottomTabNavigator,
+	BottomTabNavigationOptions,
+} from "@react-navigation/bottom-tabs";
 //Screens//
 import PostsScreen from "../screens/PostsScreen";
 import PostCardScreen from "../screens/PostsScreen/PostCardScreen";
@@ -15,11 +18,14 @@ import CreatePostScreen from "../screens/PostsScreen/CreatePostScreen";
 //End Screens//
 const BottomTab = createBottomTabNavigator();
 const NativeNavigator = createNativeStackNavigator();
+
 const Navigation = () => {
 	return (
 		<NavigationContainer
 			theme={{
-				colors: { background: "transparent" },
+				colors: {
+					background: "transparent",
+				},
 			}}
 		>
 			<BottomTab.Navigator

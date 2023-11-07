@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React from "react";
+import { View, StyleSheet } from "react-native";
 import Header from "../../../../components/header";
 import Registration from "../../../../components/screen-account-comp/screen-auth/registration";
 const RegistrationScreen = ({ navigation }) => {

@@ -1,5 +1,5 @@
 import { StatusBar } from "react-native";
-import { StyleSheet, Text, View } from "react-native";
+
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Navigation from "./src/navigation/Navigation";
 import { AuthProvider } from "./src/context/auth-context/auth-provider";

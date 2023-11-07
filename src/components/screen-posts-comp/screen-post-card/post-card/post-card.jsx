@@ -1,38 +1,27 @@
-import React, { useState } from "react";
-import {
-	View,
-	Text,
-	Pressable,
-	Image,
-	Dimensions,
-	StyleSheet,
-} from "react-native";
+import React from "react";
+import { View, Text, Pressable, Dimensions, StyleSheet } from "react-native";
 import { useAuth } from "../../../../context/auth-context/useAuth";
 import { useNavigation } from "../../../../context/navigation-context/useNavigation";
 import { usePosts } from "../../../../context/post-context/usePosts";
 import THEME from "../../../../THEME";
+import { VisibleImage } from "../../../../UTILS";
 const PostCard = ({ post }) => {
 	const { activeUser } = useAuth();
 	const { deletePost, error } = usePosts();
 	const navigation = useNavigation();
 	return (
 		<View style={styles.container}>
-			<Image
-				style={styles.boxImage}
-				source={{
-					uri: post.image,
-				}}
-			/>
+			<VisibleImage style={styles.boxImage} source={post.image} />
 
 			<View style={styles.boxInfo}>
 				<Text style={styles.title}>{post.title}</Text>
 				<Text style={styles.date}>{post.date}</Text>
 			</View>
 			<Text style={styles.content}>{post.content}</Text>
-			{post.author && (
+			{post.author && activeUser && (
 				<>
 					{error && <Text>{error}</Text>}
-					{activeUser.email === post?.author && (
+					{post.author && activeUser.email === post.author && (
 						<View style={styles.wrapSettingPress}>
 							<Pressable
 								style={styles.pressSettings}

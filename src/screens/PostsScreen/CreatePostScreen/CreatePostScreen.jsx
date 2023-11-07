@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import React from "react";
+import { StyleSheet, ScrollView } from "react-native";
 import Header from "../../../components/header";
 import CreatePost from "../../../components/screen-posts-comp/screen-create-post/create-post";
 import { NavigationContext } from "../../../context/navigation-context/navigation-context";
