@@ -3,7 +3,8 @@ import { View, Text, StyleSheet, Pressable } from "react-native";
 
 import { CreateInput } from "../../../../UTILS";
 
-import THEME from "../../../../THEME";
+import { THEME } from "../../../../THEME";
+
 const RegistrationVisible = ({
 	message,
 	sentForm,
@@ -39,7 +40,8 @@ const RegistrationVisible = ({
 						<CreateInput
 							title={"Пароль"}
 							keyData={"password"}
-							type={"password"}
+							type={"default"}
+							secureText={true}
 							setData={setData}
 							error={dataForm.error}
 						/>

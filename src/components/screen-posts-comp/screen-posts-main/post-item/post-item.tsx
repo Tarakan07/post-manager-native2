@@ -1,10 +1,13 @@
-import React from "react";
+import React, { FC } from "react";
 import { Text, View, StyleSheet, Pressable, Dimensions } from "react-native";
 import { useNavigation } from "../../../../context/navigation-context/useNavigation";
 import { VisibleImage } from "../../../../UTILS";
 import THEME from "../../../../THEME";
-
-const PostItem = ({ post }) => {
+import { TPosts } from "../../../../context/type";
+type TPr = {
+	post: TPosts;
+};
+const PostItem: FC<TPr> = ({ post }) => {
 	const navigation = useNavigation();
 
 	return (
@@ -22,7 +25,6 @@ const PostItem = ({ post }) => {
 				<Text style={styles.title}>
 					{post.title} {post.author && `(Author: ${post.author})`}
 				</Text>
-				<Text style={styles.date}>{post.date}</Text>
 			</View>
 		</View>
 	);

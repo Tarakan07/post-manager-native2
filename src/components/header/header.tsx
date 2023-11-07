@@ -1,7 +1,12 @@
-import React from "react";
+import React, { FC } from "react";
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-const Header = ({ title, navigation, back = true }) => (
+type THeaderPr = {
+	title: string;
+	navigation: any;
+	back?: boolean;
+};
+const Header: FC<THeaderPr> = ({ title, navigation, back = true }) => (
 	<View style={styles.container}>
 		{back && (
 			<View style={styles.back}>

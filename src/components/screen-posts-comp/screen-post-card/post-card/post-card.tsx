@@ -1,11 +1,15 @@
-import React from "react";
+import React, { FC } from "react";
 import { View, Text, Pressable, Dimensions, StyleSheet } from "react-native";
 import { useAuth } from "../../../../context/auth-context/useAuth";
 import { useNavigation } from "../../../../context/navigation-context/useNavigation";
 import { usePosts } from "../../../../context/post-context/usePosts";
 import THEME from "../../../../THEME";
 import { VisibleImage } from "../../../../UTILS";
-const PostCard = ({ post }) => {
+import { TPosts } from "../../../../context/type";
+type TPr = {
+	post: TPosts;
+};
+const PostCard: FC<TPr> = ({ post }) => {
 	const { activeUser } = useAuth();
 	const { deletePost, error } = usePosts();
 	const navigation = useNavigation();
@@ -15,7 +19,6 @@ const PostCard = ({ post }) => {
 
 			<View style={styles.boxInfo}>
 				<Text style={styles.title}>{post.title}</Text>
-				<Text style={styles.date}>{post.date}</Text>
 			</View>
 			<Text style={styles.content}>{post.content}</Text>
 			{post.author && activeUser && (

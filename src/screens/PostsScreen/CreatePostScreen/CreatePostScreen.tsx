@@ -1,9 +1,17 @@
-import React from "react";
+import React, { FC } from "react";
 import { StyleSheet, ScrollView } from "react-native";
 import Header from "../../../components/header";
 import CreatePost from "../../../components/screen-posts-comp/screen-create-post/create-post";
 import { NavigationContext } from "../../../context/navigation-context/navigation-context";
-const CreatePostScreen = ({ navigation, route }) => {
+import { TScreenProps } from "../../type";
+type RootStackParamList = {
+	CreatePost: { post: any };
+};
+
+const CreatePostScreen: FC<TScreenProps<RootStackParamList, "CreatePost">> = ({
+	navigation,
+	route,
+}) => {
 	const updatePost = route.params ? route.params.post : {};
 	return (
 		<ScrollView style={styles.container}>

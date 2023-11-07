@@ -1,19 +1,37 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, TextInput } from "react-native";
+import React, { useState, FC, Dispatch, SetStateAction } from "react";
+import {
+	View,
+	Text,
+	StyleSheet,
+	TextInput,
+	KeyboardTypeOptions,
+} from "react-native";
 import THEME from "../THEME";
-const CreateInput = ({
+
+type TProps = {
+	change?: boolean;
+	initValue?: string;
+	title: string;
+	keyData: string;
+	type: KeyboardTypeOptions;
+	secureText?: boolean;
+	setData: (keyData: string, val: string) => void;
+	error: string[];
+};
+
+const CreateInput: FC<TProps> = ({
 	change = true,
 	initValue = "",
+	secureText = false,
 	title,
 	keyData,
 	type,
 	setData,
 	error,
 }) => {
-	const [value, setValue] = useState(initValue);
-	const password = type === "password" ? true : false;
+	const [value, setValue] = useState<string>(initValue);
 	const errorField = error.indexOf(keyData) > -1 ? true : false;
-	const getValue = (val) => {
+	const getValue = (val: string) => {
 		setValue(val);
 		setData(keyData, val);
 	};
@@ -23,12 +41,14 @@ const CreateInput = ({
 			<Text style={styles.rowTitle}>{title}</Text>
 			{change ? (
 				<TextInput
-					secureTextEntry={password}
-					password={password}
-					keyboardType={type === "password" ? "default" : type}
+					keyboardType={type}
+					secureTextEntry={secureText}
 					autoCorrect={false}
 					onChangeText={getValue}
-					style={[styles.rowInput, errorField ? styles.rowInputError : ""]}
+					style={[
+						styles.rowInput,
+						errorField ? styles.rowInputError : { borderColor: "transparent" },
+					]}
 					autoFocus={false}
 					value={value}
 				/>

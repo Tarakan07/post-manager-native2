@@ -1,23 +1,33 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { useAuth } from "../../../../context/auth-context/useAuth";
 import THEME from "../../../../THEME";
 import { CreateInput } from "../../../../UTILS";
 import { validation } from "../../../../UTILS";
-const Profile = () => {
+type TData = {
+	name: string;
+	email: string;
+};
+type TSetDataForm = {
+	data: TData;
+	error: Array<string>;
+};
+const Profile: FC = () => {
 	const { activeUser, updateData, logout } = useAuth();
-	const { name, email, password } = activeUser;
+	// const { name, email } = activeUser;
 
 	const initState = {
 		data: {
-			name,
-			email,
+			name: activeUser?.name,
+			email: activeUser?.email,
 		},
 		error: [],
 	};
-	const [dataForm, setDataForm] = useState(initState);
+	const [dataForm, setDataForm] = useState<TSetDataForm>(
+		initState as TSetDataForm
+	);
 	const [edit, setEdit] = useState(false);
-	const setData = (keyData, value) => {
+	const setData = (keyData: string, value: string) => {
 		//set data on key field
 		setDataForm((prev) => ({
 			...prev,
@@ -28,7 +38,7 @@ const Profile = () => {
 		}));
 	};
 
-	const sentForm = (data) => {
+	const sentForm = (data: TData) => {
 		if (validation(data).hasErrors) {
 			setDataForm((prev) => ({
 				...prev,
@@ -46,7 +56,7 @@ const Profile = () => {
 	};
 	return (
 		<View style={styles.container}>
-			<View style={styles.profile}>
+			<View>
 				<View style={{ flexDirection: "row" }}>
 					<Pressable
 						style={styles.pressEdit}
@@ -61,8 +71,8 @@ const Profile = () => {
 						<Text>{edit ? "Cancel" : "Edit information?"}</Text>
 					</Pressable>
 				</View>
-				<View style={styles.fields}>
-					<View style={styles.rowField}>
+				<View>
+					<View>
 						<CreateInput
 							title={"Email"}
 							keyData={"email"}
@@ -73,7 +83,7 @@ const Profile = () => {
 							change={false}
 						/>
 					</View>
-					<View style={styles.rowField}>
+					<View>
 						<CreateInput
 							title={"Name"}
 							keyData={"name"}

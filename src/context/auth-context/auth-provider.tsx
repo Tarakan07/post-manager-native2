@@ -1,14 +1,23 @@
-import React, { createContext, useState, useMemo, useEffect } from "react";
+import React, {
+	createContext,
+	useState,
+	useMemo,
+	useEffect,
+	FC,
+	PropsWithChildren,
+} from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { fetchRegistration } from "./fetches/fetchRegistration";
 import { fetchAuthorization } from "./fetches/fetchAuthorization";
 import { fetchUpdateData } from "./fetches/fetchUpdateData";
 import { fetchLogout } from "./fetches/fetchLogout";
-export const AuthContext = createContext();
+import { TUser, TAuthContext } from "../type";
 
-export const AuthProvider = ({ children }) => {
-	const [activeUser, setActiveUser] = useState(null);
-	const [error, setError] = useState(null);
+export const AuthContext = createContext<TAuthContext>({} as TAuthContext);
+
+export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
+	const [activeUser, setActiveUser] = useState<TUser>(null);
+	const [error, setError] = useState<string | null>(null);
 	useEffect(() => {
 		const getActiveUser = async () => {
 			try {
@@ -20,17 +29,17 @@ export const AuthProvider = ({ children }) => {
 			}
 		};
 
-		getActiveUser().then((user) => setActiveUser(user));
+		getActiveUser().then((user: TUser) => setActiveUser(user));
 	}, []);
 
-	const registration = async (user) => {
+	const registration = async (user: TUser) => {
 		await fetchRegistration({ user, setError, setActiveUser });
 	};
 
-	const authorization = async (user) => {
+	const authorization = async (user: TUser) => {
 		await fetchAuthorization({ user, setError, setActiveUser });
 	};
-	const updateData = async (user) => {
+	const updateData = async (user: TUser) => {
 		await fetchUpdateData({ user, activeUser, setError, setActiveUser });
 	};
 	const logout = async () => {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 
 import * as ImagePicker from "expo-image-picker";
 
@@ -6,7 +6,16 @@ import { useNavigation } from "../../../../context/navigation-context/useNavigat
 import { usePosts } from "../../../../context/post-context/usePosts";
 import { useAuth } from "../../../../context/auth-context/useAuth";
 import { CreatePostVisible } from "./create-post-visible";
-const CreatePost = ({ updatePost }) => {
+import { TPosts } from "../../../../context/type";
+type TPr = {
+	updatePost: TPosts;
+};
+type TSetPost = {
+	title: string;
+	content: string;
+	image: string | null;
+};
+const CreatePost: FC<TPr> = ({ updatePost }) => {
 	const { title = "", content = "", image = null } = updatePost;
 	const navigation = useNavigation();
 	const {
@@ -16,21 +25,26 @@ const CreatePost = ({ updatePost }) => {
 	} = usePosts();
 	const { activeUser } = useAuth();
 
-	const [post, setPost] = useState({ title, content, image });
-	const changeSetPost = ({ v, key }) => {
+	const [post, setPost] = useState<TSetPost>({ title, content, image });
+
+	const changeSetPost = ({ v, key }: { v: string; key: string }) => {
 		setPost((prev) => ({ ...prev, [key]: v }));
 	};
 
 	const makeImage = async () => {
-		let result = await ImagePicker.launchCameraAsync({
-			mediaTypes: ImagePicker.MediaTypeOptions.Images,
-			allowsEditing: true,
-			aspect: [5, 3],
-			quality: 0.6,
-		});
+		let result: ImagePicker.ImagePickerResult =
+			await ImagePicker.launchCameraAsync({
+				mediaTypes: ImagePicker.MediaTypeOptions.Images,
+				allowsEditing: true,
+				aspect: [5, 3],
+				quality: 0.6,
+			});
 
 		if (!result.canceled) {
-			setPost((prev) => ({ ...prev, image: result.assets[0].uri }));
+			setPost((prev) => ({
+				...prev,
+				image: result.assets ? result.assets[0].uri : null,
+			}));
 		}
 	};
 	const takeImage = async () => {
@@ -42,7 +56,10 @@ const CreatePost = ({ updatePost }) => {
 		});
 
 		if (!result.canceled) {
-			setPost((prev) => ({ ...prev, image: result.assets[0].uri }));
+			setPost((prev) => ({
+				...prev,
+				image: result.assets ? result.assets[0].uri : null,
+			}));
 		}
 	};
 
@@ -57,9 +74,9 @@ const CreatePost = ({ updatePost }) => {
 			});
 		} else {
 			fetchAddPost({
-				id: Date.now(),
+				id: Date.now().toString(),
 				...post,
-				author: activeUser.email,
+				author: activeUser!.email,
 			});
 		}
 

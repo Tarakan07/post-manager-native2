@@ -1,10 +1,11 @@
-import React from "react";
+import React, { FC } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import THEME from "../../../../THEME";
 import PostItem from "../post-item";
 import { usePosts } from "../../../../context/post-context/usePosts";
 import PostsListHeader from "../posts-list-header";
-const PostsList = () => {
+import { TPosts } from "../../../../context/type";
+const PostsList: FC = () => {
 	const { posts, userPosts, error } = usePosts();
 
 	if (error) {
@@ -18,7 +19,7 @@ const PostsList = () => {
 			</View>
 		);
 	}
-	const visiblePosts = userPosts ? userPosts : posts;
+	const visiblePosts: TPosts[] = userPosts ? userPosts : posts;
 
 	return (
 		<View style={styles.container}>

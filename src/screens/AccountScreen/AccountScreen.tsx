@@ -1,14 +1,20 @@
-import React from "react";
+import React, { FC } from "react";
 import { View, StyleSheet } from "react-native";
 import AuthorizationScreen from "./AuthorizationScreen";
 import ProfileScreen from "./ProfileScreen";
 import { useAuth } from "../../context/auth-context/useAuth";
-const AccountScreen = ({ navigation }) => {
+import { TScreenProps } from "../type";
+type RootStackParamList = {
+	Account: undefined;
+};
+const AccountScreen: FC<TScreenProps<RootStackParamList, "Account">> = ({
+	navigation,
+}) => {
 	const { activeUser } = useAuth();
 	const visible = activeUser ? (
 		<ProfileScreen navigation={navigation} />
 	) : (
-		<AuthorizationScreen navigation={navigation} style={{ flex: 1 }} />
+		<AuthorizationScreen navigation={navigation} />
 	);
 
 	return (

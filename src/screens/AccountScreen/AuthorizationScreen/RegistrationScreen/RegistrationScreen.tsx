@@ -1,8 +1,14 @@
-import React from "react";
+import React, { FC } from "react";
 import { View, StyleSheet } from "react-native";
 import Header from "../../../../components/header";
 import Registration from "../../../../components/screen-account-comp/screen-auth/registration";
-const RegistrationScreen = ({ navigation }) => {
+import { TScreenProps } from "../../../type";
+type RootStackParamList = {
+	Registration: undefined;
+};
+const RegistrationScreen: FC<
+	TScreenProps<RootStackParamList, "Registration">
+> = ({ navigation }) => {
 	return (
 		<View style={styles.container}>
 			<Header title={"Registration"} navigation={navigation} />

@@ -23,7 +23,8 @@ const LoginVisible = ({ dataForm, setData, sentForm, message, error }) => {
 						<CreateInput
 							title={"Пароль"}
 							keyData={"password"}
-							type={"password"}
+							type={"default"}
+							secureText={true}
 							setData={setData}
 							error={dataForm.error}
 						/>

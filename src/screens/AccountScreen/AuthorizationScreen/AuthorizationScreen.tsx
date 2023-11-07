@@ -1,8 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import Header from "../../../components/header";
 import THEME from "../../../THEME";
-const AuthorizationScreen = ({ navigation }) => {
+import { TScreenProps } from "../../type";
+
+const AuthorizationScreen: FC<any> = ({ navigation }) => {
 	return (
 		<View style={styles.container}>
 			<Header title={"Authorization"} navigation={navigation} back={false} />

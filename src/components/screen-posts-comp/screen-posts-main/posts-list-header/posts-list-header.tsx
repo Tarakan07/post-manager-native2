@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { useNavigation } from "../../../../context/navigation-context/useNavigation";
 import { useAuth } from "../../../../context/auth-context/useAuth";
 import THEME from "../../../../THEME";
 import { usePosts } from "../../../../context/post-context/usePosts";
-const PostsListHeader = () => {
+const PostsListHeader: FC = () => {
 	const navigation = useNavigation();
 	const { activeUser } = useAuth();
-	const [showUserPost, setUserPost] = useState(false);
+	const [showUserPost, setUserPost] = useState<boolean>(false);
 	const { posts, filterPosts } = usePosts();
 	return (
 		<View style={styles.container}>

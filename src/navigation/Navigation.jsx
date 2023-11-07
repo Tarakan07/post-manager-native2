@@ -70,7 +70,7 @@ const NavigatorAccount = () => {
 				name="Registration"
 				component={RegistrationScreen}
 			/>
-			<NativeNavigator.Screen name="Profile" component={ProfileScreen} />
+			{/* <NativeNavigator.Screen name="Profile" component={ProfileScreen} /> */}
 		</NativeNavigator.Navigator>
 	);
 };

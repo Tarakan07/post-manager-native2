@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 import { validation } from "../../../../UTILS";
 import RegistrationVisible from "./registration-visible";
 import { useAuth } from "../../../../context/auth-context/useAuth";
+import { TUser } from "../../../../context/type";
 
-const Registration = ({ navigation }) => {
-	const [dataForm, setDataForm] = useState({
+type TSetDataForm = {
+	data: TUser;
+	error: Array<string>;
+};
+const Registration: FC = ({ navigation }: any) => {
+	const [dataForm, setDataForm] = useState<TSetDataForm>({
 		data: {
 			name: "",
 			email: "",
@@ -13,9 +18,9 @@ const Registration = ({ navigation }) => {
 			passwordRepeat: "",
 		},
 		error: [],
-	});
+	} as TSetDataForm);
 	const { activeUser, registration, error } = useAuth();
-	const [message, setMessage] = useState(null);
+	const [message, setMessage] = useState<string | null>(null);
 
 	useEffect(() => {
 		if (activeUser && !error) {
@@ -26,18 +31,18 @@ const Registration = ({ navigation }) => {
 		}
 	}, [activeUser, error]);
 
-	const setData = (keyData, value) => {
+	const setData = (keyData: string, value: string) => {
 		//set data on key field
 		setDataForm((prev) => ({
 			...prev,
 			data: {
-				...dataForm.data,
+				...dataForm.data!,
 				[keyData]: value,
 			},
 		}));
 	};
 
-	const sentForm = (data) => {
+	const sentForm = (data: TUser) => {
 		const changeState = () => {
 			//if have errors - change state
 			setDataForm((prev) => ({

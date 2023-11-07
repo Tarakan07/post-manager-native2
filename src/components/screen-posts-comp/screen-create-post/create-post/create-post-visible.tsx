@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import {
 	View,
 	Text,
@@ -8,8 +8,22 @@ import {
 	Image,
 } from "react-native";
 import THEME from "../../../../THEME";
-
-export const CreatePostVisible = ({
+type TSetPost = {
+	title: string;
+	content: string;
+	image: string | null;
+};
+type TPr = {
+	changeSetPost: ({ v, key }: { v: string; key: string }) => void;
+	error: string | null;
+	post: TSetPost;
+	imagePick: {
+		makeImage: () => void;
+		takeImage: () => void;
+	};
+	save: () => void;
+};
+export const CreatePostVisible: FC<TPr> = ({
 	changeSetPost,
 	error,
 	post,
@@ -20,7 +34,7 @@ export const CreatePostVisible = ({
 		<View style={styles.container}>
 			{error && <Text>{error}</Text>}
 			<View style={styles.row}>
-				<Text style={styles.title}>Title:</Text>
+				<Text>Title:</Text>
 				<TextInput
 					style={styles.field}
 					value={post.title}
@@ -28,7 +42,7 @@ export const CreatePostVisible = ({
 				/>
 			</View>
 			<View style={styles.row}>
-				<Text style={styles.content}>Content:</Text>
+				<Text>Content:</Text>
 				<TextInput
 					style={styles.field}
 					value={post.content}
@@ -40,13 +54,13 @@ export const CreatePostVisible = ({
 					onPress={() => imagePick.makeImage()}
 					style={styles.pressImage}
 				>
-					<Text style={styles.pressText}>Make photo</Text>
+					<Text>Make photo</Text>
 				</Pressable>
 				<Pressable
 					onPress={() => imagePick.takeImage()}
 					style={styles.pressImage}
 				>
-					<Text style={styles.pressText}>Take photo</Text>
+					<Text>Take photo</Text>
 				</Pressable>
 			</View>
 			<View style={styles.wrap_image}>
