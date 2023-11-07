@@ -7,15 +7,9 @@ import { usePosts } from "../../../../context/post-context/usePosts";
 import { useAuth } from "../../../../context/auth-context/useAuth";
 import { CreatePostVisible } from "./create-post-visible";
 import { TPosts } from "../../../../context/type";
-type TPr = {
-	updatePost: TPosts;
-};
-type TSetPost = {
-	title: string;
-	content: string;
-	image: string | null;
-};
-const CreatePost: FC<TPr> = ({ updatePost }) => {
+import { TSetPost, TPCreatePost } from "./type";
+
+const CreatePost: FC<TPCreatePost> = ({ updatePost }) => {
 	const { title = "", content = "", image = null } = updatePost;
 	const navigation = useNavigation();
 	const {

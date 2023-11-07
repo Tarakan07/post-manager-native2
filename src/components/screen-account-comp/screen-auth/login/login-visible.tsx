@@ -1,13 +1,22 @@
-import React from "react";
+import React, { FC } from "react";
 import { View, StyleSheet, Pressable, Text } from "react-native";
 
 import { CreateInput } from "../../../../UTILS";
+import { TPAuthVisible } from "../type";
+import THEME from "../../../../THEME";
 
-const LoginVisible = ({ dataForm, setData, sentForm, message, error }) => {
+const LoginVisible: FC<TPAuthVisible> = ({
+	dataForm,
+	setData,
+	sentForm,
+	message,
+}) => {
 	return (
 		<View style={styles.container}>
 			<View style={styles.blockForm}>
-				{error && <Text style={styles.textMessage}>{error}</Text>}
+				{dataForm.error && (
+					<Text style={styles.textMessage}>{dataForm.error}</Text>
+				)}
 				{message && <Text style={styles.textMessage}>{message}</Text>}
 				<View style={styles.form}>
 					<View style={styles.row}>
@@ -77,7 +86,7 @@ const styles = StyleSheet.create({
 
 		borderWidth: 1,
 		borderRadius: 3,
-		borderColor: THEME.colors.green,
+		borderColor: THEME.colors.title,
 	},
 	btnForm: {
 		marginTop: 20,

@@ -8,22 +8,9 @@ import {
 	Image,
 } from "react-native";
 import THEME from "../../../../THEME";
-type TSetPost = {
-	title: string;
-	content: string;
-	image: string | null;
-};
-type TPr = {
-	changeSetPost: ({ v, key }: { v: string; key: string }) => void;
-	error: string | null;
-	post: TSetPost;
-	imagePick: {
-		makeImage: () => void;
-		takeImage: () => void;
-	};
-	save: () => void;
-};
-export const CreatePostVisible: FC<TPr> = ({
+import { TPCreatePostVisible } from "./type";
+
+export const CreatePostVisible: FC<TPCreatePostVisible> = ({
 	changeSetPost,
 	error,
 	post,

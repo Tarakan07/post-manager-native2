@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 import { validation } from "../../../../UTILS";
 
 import LoginVisible from "./login-visible";
 import { useAuth } from "../../../../context/auth-context/useAuth";
-const Login = ({ navigation }) => {
+import { TSetDataForm } from "../type";
+import { TUser } from "../../../../context/type";
+const Login: FC<any> = ({ navigation }) => {
 	const { authorization, error, activeUser } = useAuth();
 
 	const initState = {
@@ -15,8 +17,10 @@ const Login = ({ navigation }) => {
 		error: [],
 	};
 
-	const [dataForm, setDataForm] = useState(initState);
-	const [message, setMessage] = useState(null);
+	const [dataForm, setDataForm] = useState<TSetDataForm>(
+		initState as TSetDataForm
+	);
+	const [message, setMessage] = useState<string | null>(null);
 	useEffect(() => {
 		if (activeUser && !error) {
 			setMessage(`Добро пожаловать,${activeUser.name}!`);
@@ -25,18 +29,18 @@ const Login = ({ navigation }) => {
 			}, 1500);
 		}
 	}, [activeUser, error]);
-	const setData = (keyData, value) => {
+	const setData = (keyData: string, value: string) => {
 		//set data on key field
 		setDataForm((prev) => ({
 			...prev,
 			data: {
-				...dataForm.data,
+				...dataForm.data!,
 				[keyData]: value,
 			},
 		}));
 	};
 
-	const sentForm = (data) => {
+	const sentForm = (data: TUser) => {
 		//if have errors - change state
 		if (validation(data).hasErrors) {
 			setDataForm((prev) => ({
@@ -56,12 +60,10 @@ const Login = ({ navigation }) => {
 
 	return (
 		<LoginVisible
-			error={error}
 			message={message}
 			dataForm={dataForm}
 			setData={setData}
 			sentForm={sentForm}
-			navigation={navigation}
 		/>
 	);
 };

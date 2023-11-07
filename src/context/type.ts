@@ -1,3 +1,6 @@
+import { Dispatch, SetStateAction } from "react";
+
+export type TSetState<T> = Dispatch<SetStateAction<T>>;
 export type TPosts = {
 	id: string;
 	image: string | null;
@@ -17,7 +20,7 @@ export type TPostContext = {
 };
 
 export type TUser = {
-	name: string;
+	name?: string;
 	email: string;
 	password?: string;
 	passwordRepeat?: string;

@@ -4,12 +4,9 @@ import { validation } from "../../../../UTILS";
 import RegistrationVisible from "./registration-visible";
 import { useAuth } from "../../../../context/auth-context/useAuth";
 import { TUser } from "../../../../context/type";
+import { TSetDataForm } from "../type";
 
-type TSetDataForm = {
-	data: TUser;
-	error: Array<string>;
-};
-const Registration: FC = ({ navigation }: any) => {
+const Registration: FC<any> = ({ navigation }) => {
 	const [dataForm, setDataForm] = useState<TSetDataForm>({
 		data: {
 			name: "",
@@ -65,7 +62,6 @@ const Registration: FC = ({ navigation }: any) => {
 			sentForm={sentForm}
 			setData={setData}
 			dataForm={dataForm}
-			error={error}
 		/>
 	);
 };

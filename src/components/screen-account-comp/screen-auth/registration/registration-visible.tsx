@@ -1,22 +1,25 @@
-import React from "react";
+import React, { FC } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 
 import { CreateInput } from "../../../../UTILS";
 
-import { THEME } from "../../../../THEME";
+import THEME from "../../../../THEME";
 
-const RegistrationVisible = ({
+import { TPAuthVisible } from "../type";
+
+const RegistrationVisible: FC<TPAuthVisible> = ({
 	message,
 	sentForm,
 	setData,
 	dataForm,
-	error,
 }) => {
 	return (
 		<View style={styles.container}>
 			<View style={styles.blockForm}>
 				<View style={styles.form}>
-					{error && <Text style={styles.textMessage}>{error}</Text>}
+					{dataForm.error && (
+						<Text style={styles.textMessage}>{dataForm.error}</Text>
+					)}
 					{message && <Text style={styles.textMessage}>{message}</Text>}
 					<View style={styles.row}>
 						<CreateInput
@@ -50,7 +53,8 @@ const RegistrationVisible = ({
 						<CreateInput
 							title={"Пароль"}
 							keyData={"passwordRepeat"}
-							type={"password"}
+							type={"default"}
+							secureText={true}
 							setData={setData}
 							error={dataForm.error}
 						/>
@@ -98,7 +102,7 @@ const styles = StyleSheet.create({
 
 		borderWidth: 1,
 		borderRadius: 3,
-		borderColor: THEME.colors.green,
+		borderColor: THEME.colors.title,
 	},
 	btnForm: {
 		marginTop: 20,
